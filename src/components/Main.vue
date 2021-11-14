@@ -18,7 +18,7 @@ export default {
     Axios.get(
       `https://api.themoviedb.org/3/tv/changes?api_key=${process.env.VUE_APP_KEY}&page=1`
     ).then((data) => {
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 10; i++) {
         Axios.get(
           `https://api.themoviedb.org/3/tv/${data.data.results[i].id}?api_key=${process.env.VUE_APP_KEY}&language=en-US`
         ).then((el) => {

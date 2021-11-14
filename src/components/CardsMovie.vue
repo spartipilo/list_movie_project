@@ -1,55 +1,57 @@
 <template>
   <div>
     <div class="container">
-      <v-card v-for="el of listTv" :key="el.id" class="card">
+      <v-card
+        v-for="el of listTv"
+        :key="el.id"
+        class="card"
+        :style="{
+          backgroundImage: `url('https://image.tmdb.org/t/p/w500/${el.backdrop_path}')`,
+          backgroundSize: 'auto',
+          backgroundPosition: 'center',
+        }"
+      >
         <v-card-title class="textTitle">{{ el.name }}</v-card-title>
         <h5 class="genres">
           {{ el.genres[0] === undefined ? "Nessun genere" : el.genres[0].name }}
         </h5>
-        <v-btn color="primary" class="btn">Trama...</v-btn>
+        <v-btn color="primary" class="btn" @click="openDialog(el.id)"
+          >Trama...</v-btn
+        >
       </v-card>
+      <DialogsOverview
+        :dialog="dialog"
+        :data="objectData"
+        @closeDialog="dialog = $event"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import DialogsOverview from "./DialogsOverview.vue";
 export default {
-  props: ["listTv"],
+  components: { DialogsOverview },
+  props: {
+    listTv: Array,
+  },
   data() {
-    return {};
+    return {
+      dialog: false,
+      objectData: {},
+    };
+  },
+  methods: {
+    openDialog(id) {
+      this.objectData = this.listTv.find((x) => x.id === id);
+      if (this.objectData) {
+        this.dialog = true;
+      }
+    },
   },
 };
 </script>
 
 <style>
-.container {
-  width: 100%;
-  display: flex;
-  position: absolute;
-  justify-content: space-around;
-  flex-flow: row wrap;
-}
-
-.v-card__title {
-  display: block !important;
-  text-align: center;
-}
-
-.card {
-  margin: 30px 0;
-  height: 550px;
-  width: 300px;
-}
-
-.card .btn {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-}
-
-.card .genres {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-}
+@import url("./style/CardsMovie.css");
 </style>
