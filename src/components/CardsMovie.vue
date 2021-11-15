@@ -8,6 +8,7 @@
         label="Cerca la serie..."
         v-model="search"
         @input="searchTv()"
+        rounded
       ></v-text-field>
     </div>
     <div>
@@ -43,7 +44,7 @@
     <div>
       <v-pagination
         v-model="page"
-        :length="Math.ceil(listTv.length / 5)"
+        :length="Math.ceil(copyListTv.length / 5)"
       ></v-pagination>
     </div>
   </div>
@@ -79,9 +80,10 @@ export default {
         this.dialog = true;
       }
     },
+    //FILTRO RICERCA SU TEXT-FIELD
     searchTv() {
       if (this.search) {
-        this.copyListTv = this.copyListTv.filter((x) => {
+        this.copyListTv = this.listTv.filter((x) => {
           return x.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1;
         });
       } else {
