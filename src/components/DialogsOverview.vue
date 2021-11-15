@@ -4,10 +4,10 @@
       <v-card>
         <v-card-title>{{ data.name }}</v-card-title>
         <v-card-text class="py-10">{{
-          data.overview || "No description"
+          data.overview || "Non c'è nessuna descrizione!"
         }}</v-card-text>
         <v-btn color="error" class="mb-2 ml-2" @click="closeDialog()"
-          >Close</v-btn
+          >Chiudi</v-btn
         >
       </v-card>
     </v-dialog>
@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     closeDialog() {
+      // INVIA IL VALORE DI VALUEDIALOG TRAMITE @closeDialog
       this.$emit("closeDialog", this.valueDialog);
     },
   },

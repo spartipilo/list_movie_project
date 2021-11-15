@@ -24,6 +24,19 @@
   bottom: 20px;
   right: 20px;
 }
+.container__text-field {
+  width: 100% !important;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.text-field {
+  position: absolute !important;
+  top: 20px;
+  width: 50%;
+  min-width: 400px;
+}
 
 .card .genres {
   position: absolute;
