@@ -41,12 +41,6 @@
         />
       </div>
     </div>
-    <div>
-      <v-pagination
-        v-model="page"
-        :length="Math.ceil(copyListTv.length / 5)"
-      ></v-pagination>
-    </div>
   </div>
 </template>
 
